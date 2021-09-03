@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             UserSeeder::class,
             PostSeeder::class,
+            CommentSeeder::class,
         ]);
         // User::factory(20)->create();
         // Post::factory(40)->create();
