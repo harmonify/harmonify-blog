@@ -32,6 +32,7 @@
             <x-post-comment />
             <x-post-comment />
             <x-post-comment />
+            <x-post-comment />
         </section>
 
     </div>
