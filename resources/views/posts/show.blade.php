@@ -31,7 +31,7 @@
         <section class="mb-5">
             <p class="fs-2 lead">
                 Comments
-                ({{ $comments->count() }})
+                ({{ $post->comments->count() }})
             </p>
 
             @include('components.posts.add-comment-form')

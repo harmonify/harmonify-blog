@@ -27,13 +27,11 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
+        // ddd($post, $post->load('comments'));
         return view('posts/show', [
           'title' => 'Single Post',
           'active' => 'blog',
           'post' => $post,
-          'comments' => Comment::with(['author'])
-            ->where('post_id', $post->id)
-            ->get(),
         ]);
     }
 

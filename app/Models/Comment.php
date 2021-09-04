@@ -13,6 +13,10 @@ class Comment extends Model
         'id'
     ];
 
+    protected $with = [
+        'author',
+    ];
+
     public function post()
     {
         return $this->belongsTo(Post::class);
