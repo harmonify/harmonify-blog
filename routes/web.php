@@ -22,7 +22,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 |
 */
 
-Route::view('/test', '__test__');
+Route::view('/test', 'test');
 
 Route::permanentRedirect('/home', '/');
 
