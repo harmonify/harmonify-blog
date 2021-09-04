@@ -24,7 +24,7 @@ class CommentFactory extends Factory
         return [
             'user_id' => mt_rand(1, 20),
             'post_id' => mt_rand(1, 10),
-            'parent_comment_id' => mt_rand(1, 10),
+            'parent_comment_id' => null,
             'body' => collect($this->faker->paragraphs(mt_rand(3, 10)))
                 ->map(fn($p) => "<p>{$p}</p>")
                 ->implode(''),
