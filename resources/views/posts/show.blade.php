@@ -28,11 +28,10 @@
         </a>
 
         <section class="mb-5">
-            <p class="fs-2">Comments Section</p>
-            <x-post-comment />
-            <x-post-comment />
-            <x-post-comment />
-            <x-post-comment />
+            <p class="fs-2 lead">Comments</p>
+            @foreach($post->comments as $comment)
+                <x-post-comment :comment="$comment" />
+            @endforeach
         </section>
 
     </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Utilities\PostUtilities;
@@ -29,7 +30,10 @@ class PostController extends Controller
         return view('posts/show', [
           'title' => 'Single Post',
           'active' => 'blog',
-          'post' => $post
+          'post' => $post,
+          'comments' => Comment::with(['author'])
+            ->where('post_id', $post->id)
+            ->get(),
         ]);
     }
 
