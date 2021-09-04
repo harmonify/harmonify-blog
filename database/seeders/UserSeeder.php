@@ -14,14 +14,14 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(20)->create();
         User::create([
             'name' => 'Administrator',
             'username' => 'admin',
             'email' => 'admin@gmail.com',
-            'password' => 'admin',
+            'password' => bcrypt('admin'),
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+        User::factory(20)->create();
     }
 }
