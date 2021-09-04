@@ -8,6 +8,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardPostController;
+use App\Http\Controllers\PostCommentController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -78,4 +79,5 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('/posts', DashboardPostController::class);
     });
     
+    Route::post('/posts/{post:slug}/comment', [PostCommentController::class, 'store']);
 });
