@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
@@ -8,6 +7,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardPostController;
+use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PostCommentController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -32,6 +32,8 @@ Route::get('/', function () {
       'active' => 'home',
     ]);
 });
+
+Route::post('/newsletter', NewsletterController::class);
 
 Route::get('/about', function () {
     return view('about', [

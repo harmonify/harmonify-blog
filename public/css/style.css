@@ -43,3 +43,7 @@ html::-webkit-scrollbar-thumb:hover {
 html::-webkit-scrollbar-track {
     background-color: #5556;
 }
+
+.focus-outline-0 {
+    outline: 0 !important;
+}
