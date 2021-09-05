@@ -1,14 +1,13 @@
-<?php 
+<?php
 
 namespace App\Services;
 
 use \MailchimpMarketing\ApiClient;
-    
-class NewsletterService
+
+class MailchimpNewsletter implements NewsletterInterface
 {
     public function __construct(protected ApiClient $client)
     {
-        # code...
     }
 
     public function subscribe(string $email, string $list = null)
@@ -25,11 +24,9 @@ class NewsletterService
     {
         return $this->client->lists->getListMembersInfo(config("services.mailchimp.lists.subscriber"))->members;
     }
-    
+
     public function getAllSubscribersEmail()
     {
         return collect($this->getAllSubscribers())->pluck('email_address')->toArray();
     }
 }
-
-?>
