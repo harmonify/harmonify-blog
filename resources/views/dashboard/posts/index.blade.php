@@ -15,9 +15,9 @@
     </div>
 </div>
 @if (session()->has('alert'))
-<x-alert class="col-lg-9" />
+<x-alert class="col-lg-10" />
 @endif
-<div class="table-responsive col-lg-9">
+<div class="table-responsive col-lg-10">
     <a href="/dashboard/posts/create" class="btn btn-primary mb-3 text-white text-decoration-none">
         <span data-feather="plus"></span>
         <span class="align-text-top">Create New Post</span>
@@ -25,37 +25,35 @@
     <table class="table table-striped table-sm">
         <thead>
             <tr>
-                <th>#</th>
-                <th>Title</th>
-                <th>Category</th>
-                <th>Action</th>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Category</th>
+                <th scope="col">Last Updated At</th>
+                <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
         @foreach ($posts as $post)
         <tr>
-            <td>{{ $loop->iteration }}</td>
+            <th scope="row">{{ $loop->index + $posts->firstItem() }}</th>
             <td>{{ $post->title }}</td>
             <td>{{ $post->category->name }}</td>
+            <td>{{ $post->updated_at->diffForHumans() }}</td>
             <td>
                 <a href="/dashboard/posts/{{ $post->slug }}" class="btn btn-sm btn-info text-decoration-none text-light">
                     <span data-feather="eye"></span>
                 </a>
-                <a href="#" class="btn btn-sm btn-warning text-decoration-none text-light">
+                <a href="/dashboard/posts/{{ $post->slug }}/edit" class="btn btn-sm btn-warning text-decoration-none text-light">
                     <span data-feather="edit"></span>
                 </a>
-                <form action="/dashboard/posts/{{ $post->slug }}" method="POST" class="d-inline-block">
-                    @csrf
-                    @method('DELETE')
-                    <input type="hidden" name="slug" value="{{ $post->slug }}">
-                    <button type="submit" class="btn btn-sm btn-danger text-decoration-none text-light" onclick="confirm('Are you sure?')">
-                        <span data-feather="trash"></span>
-                    </button>
-                </form>
+                <x-dashboard.destroy :slug="$post->slug"/>
             </td>
         </tr>
         @endforeach
         </tbody>
     </table>
+    <div class="d-flex justify-content-center">
+        {{ $posts->links() }}
+    </div>
 </div>
 @endsection

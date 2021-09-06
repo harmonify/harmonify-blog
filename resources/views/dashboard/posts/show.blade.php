@@ -11,14 +11,13 @@
                         <span data-feather="arrow-left"></span>
                         Back to My Posts
                     </a>
-                    <a href="#" class="btn btn-sm btn-warning text-decoration-none text-light">
+                    <a href="/dashboard/posts/{{ $post->slug }}/edit" class="btn btn-sm btn-warning text-decoration-none text-light">
                         <span data-feather="edit"></span>
                         Edit
                     </a>
-                    <a href="#" class="btn btn-sm btn-danger text-decoration-none text-light">
-                        <span data-feather="trash"></span>
+                    <x-dashboard.destroy :slug="$post->slug">
                         Delete
-                    </a>
+                    </x-dashboard.destroy>
                 </div>
                 <h5 class="card-title">{{ $post->title }}</h5>
                 <div class="mb-3">

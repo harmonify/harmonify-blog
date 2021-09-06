@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use \Cviebrock\EloquentSluggable\Services\SlugService;
+use Illuminate\Validation\Rule;
 use App\Http\Requests\StorePostRequest;
 use App\Utilities\DashboardPostUtilities;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class DashboardPostController extends Controller
 {
@@ -20,7 +21,10 @@ class DashboardPostController extends Controller
     {
         return view('/dashboard/posts/index', [
             'title' => 'My Posts',
-            'posts' => Post::where('user_id', auth()->user()->id)->with('category')->get()
+            'posts' => Post::where('user_id', auth()->user()->id)
+                ->with('category')
+                ->latest('updated_at')
+                ->paginate(10),
         ]);
     }
 
@@ -50,10 +54,7 @@ class DashboardPostController extends Controller
         // Retrieve the validated input data...
         $post = $request->validated();
 
-        $post = collect($post)->merge([
-            'excerpt' => DashboardPostUtilities::generateExcerpt($post['body']),
-            'user_id' => auth()->user()->id,
-        ])->toArray();
+        $post = collect($post)->merge(DashboardPostUtilities::generateData($post))->toArray();
 
         Post::create($post);
 
@@ -85,7 +86,11 @@ class DashboardPostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('dashboard/posts/edit', [
+            'title' => $post->title,
+            'post' => $post,
+            'categories' => Category::all(),
+        ]);
     }
 
     /**
@@ -95,24 +100,24 @@ class DashboardPostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(StorePostRequest $request, Post $post)
+    public function update(Request $request, Post $post)
     {
-        // The incoming request is valid...
-        // Retrieve the validated input data...
-        $updatePost = $request->validated();
+        $rules = [
+            'title' => 'required|string|min:3|max:255',
+            'slug' => ['required', 'string', 'min:3', Rule::unique('posts')->ignore($post->id, 'id')],
+            'body' => 'required|string|min:20',
+            'category_id' => 'required|numeric',
+        ];
 
-        $updatePost = collect($updatePost)->merge([
-            'excerpt' => DashboardPostUtilities::generateExcerpt($post['body']),
-            'user_id' => auth()->user()->id,
-        ])->toArray();
+        $update = $request->validate($rules);
 
-        Post::where('slug', $post->slug)->update([
-            $request
-        ]);
+        $update = collect($update)->merge(DashboardPostUtilities::generateData($update))->toArray();
+
+        Post::find($post->id)->update($update);
 
         return redirect('/dashboard/posts')->with('alert', [
             'type' => 'success',
-            'message' => 'You successfully updated a post!'
+            'message' => 'You updated a post!'
         ]);
     }
 
@@ -124,7 +129,7 @@ class DashboardPostController extends Controller
      */
     public function destroy(Post $post)
     {
-        Post::where('slug', $post->slug)->delete();
+        Post::destroy($post->id);
 
         return redirect('/dashboard/posts')->with('alert', [
             'type' => 'warning',
