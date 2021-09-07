@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\UpdatePostRequest;
 use App\Utilities\DashboardPostUtilities;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 
@@ -100,16 +100,9 @@ class DashboardPostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(UpdatePostRequest $request, Post $post)
     {
-        $rules = [
-            'title' => 'required|string|min:3|max:255',
-            'slug' => ['required', 'string', 'min:3', Rule::unique('posts')->ignore($post->id, 'id')],
-            'body' => 'required|string|min:20',
-            'category_id' => 'required|numeric',
-        ];
-
-        $update = $request->validate($rules);
+        $update = $request->validated();
 
         $update = collect($update)->merge(DashboardPostUtilities::generateData($update))->toArray();
 
