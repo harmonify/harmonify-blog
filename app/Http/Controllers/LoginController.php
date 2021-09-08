@@ -27,7 +27,7 @@ class LoginController extends Controller
             return redirect()->intended('/dashboard');
         }
 
-        return back()
+        return redirect('/login')
             ->with('alert', [
                 'type' => 'danger',
                 'message' => 'Login failed!',

@@ -21,7 +21,7 @@ class NewsletterController extends Controller
             ]);
         }
 
-        return back()->with('alert', [
+        return redirect('/')->with('alert', [
             'type' => 'success',
             'message' => 'Your email is added to our newsletter list.'
         ]);
