@@ -4,7 +4,7 @@
 <div class="container-fluid d-flex justify-content-center py-4">
     <div class="col-lg-9">
         <div class="card mb-4 rounded-3 border-secondary">
-            <img src="https://source.unsplash.com/collection/4510513/1200x400" class="card-img-top" alt="{{ $post->title }}">
+            <img src="{{ asset('storage/'.$post->thumbnail) }}" class="card-img-top" alt="{{ $post->title }}">
             <div class="card-body">
                 <div class="mb-4">
                     <a href="/dashboard/posts" class="btn btn-sm btn-success text-decoration-none text-light">

@@ -3,7 +3,7 @@ body {
     color: white;
 }
 
-/* 
+/*
  * Form
  */
 form .form-floating input {
@@ -15,7 +15,7 @@ form .form-floating input {
     z-index: 2;
 }
 
-/* 
+/*
  * Scrollbar
  */
 
@@ -31,9 +31,12 @@ html::-webkit-scrollbar {
 }
 
 html::-webkit-scrollbar-thumb {
-    background-color: #7776;    /* color of the scroll thumb */
-    border-radius: 20px;       /* roundness of the scroll thumb */
-    border: 3px solid #0002;  /* creates padding around scroll thumb */
+    background-color: #7776;
+    /* color of the scroll thumb */
+    border-radius: 20px;
+    /* roundness of the scroll thumb */
+    border: 3px solid #0002;
+    /* creates padding around scroll thumb */
 }
 
 html::-webkit-scrollbar-thumb:hover {
@@ -46,4 +49,10 @@ html::-webkit-scrollbar-track {
 
 .focus-outline-0 {
     outline: 0 !important;
+}
+
+.crop-center {
+    max-height: 400px;
+    object-fit: cover;
+    object-position: center;
 }

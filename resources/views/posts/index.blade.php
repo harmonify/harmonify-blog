@@ -24,7 +24,7 @@
     @if ($posts->count())
     {{-- Hero --}}
     <div class="card bg-dark mb-4 rounded-3 border-secondary text-center">
-        <img src="https://source.unsplash.com/1200x400?mechanical%20keyboard" class="card-img-top img-fluid" alt="{{ $posts[0]->title }}">
+        <img src="{{ asset('storage/'.$posts[0]->thumbnail) }}" class="card-img-top img-fluid crop-center" alt="{{ $posts[0]->title }}">
         <div class="card-body">
             <h5 class="card-title">{{ $posts[0]->title }}</h5>
             <small class="d-block mb-2 card-subtitle text-muted fst-italic">
@@ -46,7 +46,7 @@
         @foreach ($posts->skip(1) as $post)
             <article class="col-md-4">
                 <div class="card bg-dark mb-4 rounded-3 border-secondary">
-                    <img src="https://source.unsplash.com/collection/4510513/600x400?{{ $loop->iteration }}" alt="{{ $post->title }}">
+                    <img src="{{ asset('storage/'.$post->thumbnail) }}" alt="{{ $post->title }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ $post->title }}</h5>
                         <small class="d-block mb-2 card-subtitle text-muted fst-italic">

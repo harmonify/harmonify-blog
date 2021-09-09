@@ -5,7 +5,7 @@
     <div class="col-9">
         <x-card>
             <article>
-                <img src="https://source.unsplash.com/collection/4510513/1200x400?{{ isset($i) ? $i : "" }}" class="card-img-top" alt="{{ $post->title }}">
+                <img src="{{ asset('storage/'.$post->thumbnail) }}" class="card-img-top crop-center" alt="{{ $post->title }}">
                 <div class="card-body text-center">
                     <h1 class="card-title fs-3">{{ $post->title }}</h1>
                     <small class="d-block mb-2 card-subtitle text-muted fst-italic">
