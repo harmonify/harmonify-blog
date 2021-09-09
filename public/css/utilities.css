@@ -1,0 +1,13 @@
+.focus-outline-0 {
+    outline: 0 !important;
+}
+
+.crop-center {
+    max-height: 400px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}

@@ -17,6 +17,7 @@
 
     {{-- Custom --}}
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/utilities.css">
     <script defer src="/js/script.js"></script>
 
     <title>Try Laravel | {{ $title }}</title>
