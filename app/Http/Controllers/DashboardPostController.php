@@ -7,7 +7,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
-use App\Utilities\DashboardPostUtilities;
+use App\Utilities\DashboardPostUtilities as Utilities;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class DashboardPostController extends Controller
@@ -50,11 +50,14 @@ class DashboardPostController extends Controller
     public function store(StorePostRequest $request)
     {
         // The incoming request is valid...
-
         // Retrieve the validated input data...
         $post = $request->validated();
 
-        $post = collect($post)->merge(DashboardPostUtilities::generateData($post))->toArray();
+        $post = collect($post)->merge([
+            'excerpt' => Utilities::generateExcerpt($post['body']),
+            'user_id' => Utilities::generateAuthorId(),
+            'thumbnail' => Utilities::storeThumbnail($request->thumbnail),
+        ])->toArray();
 
         Post::create($post);
 
@@ -104,7 +107,11 @@ class DashboardPostController extends Controller
     {
         $update = $request->validated();
 
-        $update = collect($update)->merge(DashboardPostUtilities::generateData($update))->toArray();
+        $update = collect($update)->merge([
+            'excerpt' => Utilities::generateExcerpt($update['body']),
+            'user_id' => Utilities::generateAuthorId(),
+            'thumbnail' => Utilities::storeThumbnail($request->thumbnail),
+        ])->toArray();
 
         Post::find($post->id)->update($update);
 
