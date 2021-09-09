@@ -55,7 +55,7 @@ class DashboardPostController extends Controller
 
         $post = collect($post)->merge([
             'excerpt' => Utilities::generateExcerpt($post['body']),
-            'user_id' => Utilities::generateAuthorId(),
+            'user_id' => Utilities::getAuthorId(),
             'thumbnail' => Utilities::storeThumbnail($request->thumbnail),
         ])->toArray();
 
@@ -109,8 +109,8 @@ class DashboardPostController extends Controller
 
         $update = collect($update)->merge([
             'excerpt' => Utilities::generateExcerpt($update['body']),
-            'user_id' => Utilities::generateAuthorId(),
-            'thumbnail' => Utilities::storeThumbnail($request->thumbnail),
+            'user_id' => Utilities::getAuthorId(),
+            'thumbnail' => Utilities::updateThumbnail($request->thumbnail),
         ])->toArray();
 
         Post::find($post->id)->update($update);
@@ -129,6 +129,8 @@ class DashboardPostController extends Controller
      */
     public function destroy(Post $post)
     {
+        Utilities::deleteThumbnail($post->thumbnail);
+
         Post::destroy($post->id);
 
         return redirect('/dashboard/posts')->with('alert', [

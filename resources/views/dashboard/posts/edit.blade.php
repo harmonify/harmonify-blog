@@ -19,7 +19,7 @@
     <span class="align-text-top">Back to Posts</span>
 </a>
 <div class="col-lg-8">
-    <form action="/dashboard/posts/{{ $post->slug }}" method="POST">
+    <form action="/dashboard/posts/{{ $post->slug }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="mb-3">
@@ -56,7 +56,7 @@
 
         <div class="mb-3">
             <label for="thumbnail" class="form-label">Thumbnail</label>
-            <input type="file" class="form-control @error('thumbnail') is-invalid @enderror" id="thumbnail" name="thumbnail" value="{{ old('thumbnail') }}" tabindex="-1">
+            <input type="file" class="form-control @error('thumbnail') is-invalid @enderror" id="thumbnail" name="thumbnail" value="{{ old('thumbnail') }}">
             @error('thumbnail')
                 <div class="invalid-feedback">
                     {{ $message }}

@@ -3,21 +3,79 @@
 namespace App\Utilities;
 
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class DashboardPostUtilities
 {
-    public static function generateExcerpt(string $str) : string
+    protected static $defaultThumbnail = 'thumbnails/default.jpg';
+
+    /**
+     * Generate the post excerpt from body
+     *
+     * @param string $body
+     * @return string
+     */
+    public static function generateExcerpt(string $body) : string
     {
-        return Str::limit( strip_tags($str), 200, '...' );
+        return Str::limit( strip_tags($body), 200, '...' );
     }
 
-    public static function generateAuthorId() : string|int
+    /**
+     * Get the current authenticated user id
+     *
+     * @return int
+     */
+    public static function getAuthorId() : int
     {
         return auth()->user()->id;
     }
 
+    /**
+     * Store the post thumbnail
+     *
+     * @param $thumbnail
+     * @return string
+     */
     public static function storeThumbnail($thumbnail) : string
     {
+        if (! $thumbnail) {
+            return self::$defaultThumbnail;
+        }
+
         return $thumbnail->store('thumbnails');
+    }
+
+    /**
+     * Update the post thumbnail
+     *
+     * @param $thumbnail
+     * @return string
+     */
+    public static function updateThumbnail($thumbnail) : string
+    {
+        $oldThumbnail = request()->post->thumbnail;
+
+        if (! $thumbnail) {
+            return $oldThumbnail;
+        }
+
+        if ($oldThumbnail !== self::$defaultThumbnail) {
+            Storage::delete($oldThumbnail);
+        }
+
+        return $thumbnail->store('thumbnails');
+    }
+
+    /**
+     * Delete the post thumbnail
+     *
+     * @param $thumbnail
+     * @return null
+     */
+    public static function deleteThumbnail($thumbnail)
+    {
+        collect($thumbnail)->unless($thumbnail === self::$defaultThumbnail, fn () =>
+            Storage::delete($thumbnail)
+        );
     }
 }

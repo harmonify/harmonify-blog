@@ -55,7 +55,7 @@
 
         <div class="mb-3">
             <label for="thumbnail" class="form-label">Thumbnail</label>
-            <input type="file" class="form-control @error('thumbnail') is-invalid @enderror" id="thumbnail" name="thumbnail" value="{{ old('thumbnail') }}" tabindex="-1">
+            <input type="file" class="form-control @error('thumbnail') is-invalid @enderror" id="thumbnail" name="thumbnail" value="{{ old('thumbnail') }}">
             @error('thumbnail')
                 <div class="invalid-feedback">
                     {{ $message }}
