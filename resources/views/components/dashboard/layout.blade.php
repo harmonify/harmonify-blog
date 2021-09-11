@@ -35,7 +35,7 @@
 </head>
 
 <body>
-    @include('components/dashboard/header')
+    @include('components/dashboard/navbar')
 
     <div class="container-fluid">
         <div class="row">
