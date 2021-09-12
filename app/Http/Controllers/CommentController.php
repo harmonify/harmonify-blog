@@ -7,12 +7,12 @@ use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreCommentRequest;
 
-class PostCommentController extends Controller
+class CommentController extends Controller
 {
     public function store(StoreCommentRequest $request, Post $post)
     {
         $request = $request->validated();
-        
+
         Comment::create([
             'post_id' => $post->id,
             'user_id' => auth()->user()->id,

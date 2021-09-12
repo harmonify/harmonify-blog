@@ -8,7 +8,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardPostController;
 use App\Http\Controllers\NewsletterController;
-use App\Http\Controllers\PostCommentController;
+use App\Http\Controllers\CommentController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -58,7 +58,7 @@ Route::get('/authors', [UserController::class, 'index']);
 Route::middleware(['guest'])->group(function () {
     Route::get('/login', [LoginController::class, 'index'])->name('login');
     Route::post('/login', [LoginController::class, 'authenticate'])->middleware('throttle:three-failed-login');
-    
+
     Route::get('/register', [RegisterController::class, 'index']);
     Route::post('/register', [RegisterController::class, 'store']);
 });
@@ -76,10 +76,10 @@ Route::middleware(['auth'])->group(function () {
                 'active' => 'dashboard'
             ]);
         });
-        
+
         Route::get('/posts/checkSlug', [DashboardPostController::class, 'checkSlug']);
         Route::resource('/posts', DashboardPostController::class);
     });
-    
-    Route::post('/posts/{post:slug}/comment', [PostCommentController::class, 'store']);
+
+    Route::post('/posts/{post:slug}/comment', [CommentController::class, 'store']);
 });
