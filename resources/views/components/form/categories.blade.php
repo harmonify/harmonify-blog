@@ -11,7 +11,7 @@
     <select class="form-select"
         id="{{ $label }}"
         name="{{ $name }}"
-        @if ($attributes->get('required')) required @endif
+        {{ $attributes }}
     >
         <option selected value="1" class="text-muted">Choose a {{ $label }}</option>
         @foreach ($categories->skip(1) as $category)

@@ -12,7 +12,7 @@
         name="{{ $name }}"
         class="@error($name) is-invalid @enderror"
         value="{{ old($name, $old) }}"
-        @if ($attributes->get('required')) required @endif
+        {{ $attributes }}
     >
     <trix-editor input="{{ $name }}" style="min-height: 30vh"></trix-editor>
     

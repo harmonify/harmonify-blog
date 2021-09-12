@@ -20,6 +20,9 @@
     <link rel="stylesheet" href="/css/utilities.css">
     <script defer src="/js/script.js"></script>
 
+    {{-- Masonry JS --}}
+    <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
+
     <title>Try Laravel | {{ $title }}</title>
 </head>
 

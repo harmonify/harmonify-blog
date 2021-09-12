@@ -18,7 +18,7 @@
         name="{{ $name }}"
         value="{{ old($name, $old) }}"
         autofocus autocomplete="off"
-        @if ($attributes->get('required')) required @endif
+        {{ $attributes }}
     >
     
     <x-form.error name="{{ $name }}" />
