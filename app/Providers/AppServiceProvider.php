@@ -8,6 +8,7 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
 use MailchimpMarketing\ApiClient;
+use Illuminate\Database\Eloquent\Model;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -49,5 +50,6 @@ class AppServiceProvider extends ServiceProvider
                 ? $rule->uncompromised(3)
                 : $rule;
         });
+        Model::preventLazyLoading(! app()->isProduction());
     }
 }

@@ -42,10 +42,10 @@
     {{-- /Hero --}}
 
     {{-- Posts --}}
-    <div class="row mb-3">
+    <div class="row mb-3" data-masonry='{"percentPosition": true }'>
         @foreach ($posts->skip(1) as $post)
-            <article class="col-md-4">
-                <div class="card bg-dark mb-4 rounded-3 border-secondary">
+            <article class="col-12 col-md-6 col-lg-4">
+                <div class="card bg-dark mb-4 rounded-3 border-secondary text-center text-md-start">
                     <img src="{{ asset('storage/'.$post->thumbnail) }}" alt="{{ $post->title }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ $post->title }}</h5>

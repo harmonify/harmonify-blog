@@ -27,7 +27,7 @@ class StorePostRequest extends FormRequest
         return [
             'title' => 'required|string|min:3|max:255',
             'slug' => 'required|string|min:3|unique:posts',
-            'thumbnail' => 'image',
+            'thumbnail' => 'image|file|max:2048',
             'body' => 'required|string|min:20',
             'category_id' => 'required|numeric',
         ];
