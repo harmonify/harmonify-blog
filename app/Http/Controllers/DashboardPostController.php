@@ -9,6 +9,7 @@ use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Utilities\DashboardPostUtilities as Utilities;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
+use Illuminate\Support\Facades\Gate;
 
 class DashboardPostController extends Controller
 {
@@ -75,6 +76,10 @@ class DashboardPostController extends Controller
      */
     public function show(Post $post)
     {
+        if (! Gate::allows('show', $post)) {
+            abort(403);
+        }
+
         return view('/dashboard/posts/show', [
             'title' => $post->title,
             'post' => $post
@@ -89,6 +94,10 @@ class DashboardPostController extends Controller
      */
     public function edit(Post $post)
     {
+        if (! Gate::allows('authorize', $post)) {
+            abort(403);
+        }
+        
         return view('dashboard/posts/edit', [
             'title' => $post->title,
             'post' => $post,
@@ -105,6 +114,10 @@ class DashboardPostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
+        if (! Gate::allows('update', $post)) {
+            abort(403);
+        }
+
         $update = $request->validated();
 
         $update = collect($update)->merge([
@@ -129,6 +142,10 @@ class DashboardPostController extends Controller
      */
     public function destroy(Post $post)
     {
+        if (! Gate::allows('update-post', $post)) {
+            abort(403);
+        }
+        
         Utilities::deleteThumbnail($post->thumbnail);
 
         Post::destroy($post->id);
