@@ -7,9 +7,9 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
-use App\Utilities\DashboardPostUtilities as Utilities;
+use App\Policies\PostPolicy;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
-use Illuminate\Support\Facades\Gate;
+use App\Utilities\DashboardPostUtilities as Utilities;
 
 class DashboardPostController extends Controller
 {
@@ -76,9 +76,7 @@ class DashboardPostController extends Controller
      */
     public function show(Post $post)
     {
-        if (! Gate::allows('show', $post)) {
-            abort(403);
-        }
+        $this->authorize('view', $post);
 
         return view('/dashboard/posts/show', [
             'title' => $post->title,
@@ -94,10 +92,8 @@ class DashboardPostController extends Controller
      */
     public function edit(Post $post)
     {
-        if (! Gate::allows('authorize', $post)) {
-            abort(403);
-        }
-        
+        $this->authorize('view', $post);
+
         return view('dashboard/posts/edit', [
             'title' => $post->title,
             'post' => $post,
@@ -114,9 +110,7 @@ class DashboardPostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
-        if (! Gate::allows('update', $post)) {
-            abort(403);
-        }
+        $this->authorize('view', $post);
 
         $update = $request->validated();
 
@@ -142,9 +136,7 @@ class DashboardPostController extends Controller
      */
     public function destroy(Post $post)
     {
-        if (! Gate::allows('update-post', $post)) {
-            abort(403);
-        }
+        $this->authorize('view', $post);
         
         Utilities::deleteThumbnail($post->thumbnail);
 

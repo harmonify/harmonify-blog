@@ -6,21 +6,9 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class DashboardPostPolicy
+class PostPolicy
 {
     use HandlesAuthorization;
-
-    /**
-     * Determine whether the user is the author of the post
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public static function authorize(User $user, Post $post)
-    {
-        return $user->id === $post->user_id;
-    }
 
     /**
      * Determine whether the user can view any models.
@@ -42,7 +30,7 @@ class DashboardPostPolicy
      */
     public function view(User $user, Post $post)
     {
-        //
+        return $user->id === $post->user_id;
     }
 
     /**
@@ -65,7 +53,7 @@ class DashboardPostPolicy
      */
     public function update(User $user, Post $post)
     {
-        //
+        return $user->id === $post->user_id;
     }
 
     /**
@@ -77,7 +65,7 @@ class DashboardPostPolicy
      */
     public function delete(User $user, Post $post)
     {
-        //
+        return $user->id === $post->user_id;
     }
 
     /**

@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use App\Models\Role;
 use App\Models\User;
-use App\Policies\DashboardPostPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -16,6 +15,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
+        'App\Models\Post' => 'App\Policies\PostPolicy',
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
     ];
 
@@ -31,7 +31,5 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('admin', function (User $user) {
             return $user->role_id === Role::where('guard_name', 'admin')->id;
         });
-
-        Gate::define('authorize', [DashboardPostPolicy::class, 'authorize']);
     }
 }
