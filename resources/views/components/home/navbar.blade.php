@@ -34,7 +34,7 @@
                         </ul>
                     </li>
                     <li class="nav-item opacity-75">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled using opacity-75</a>
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"></a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-auto">

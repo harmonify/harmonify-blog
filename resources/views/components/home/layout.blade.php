@@ -29,10 +29,11 @@
 <body>
     @include('components/home/navbar')
 
-    <div class="container mt-4">
+    <div class="container mt-4 mb-4">
         @yield('container')
     </div>
 
+    @include('components/home/footer')
 </body>
 
 </html>

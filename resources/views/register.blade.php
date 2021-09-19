@@ -1,7 +1,7 @@
 @extends('components/home/layout')
 
 @section('container')
-<div class="row justify-content-center align-items-center text-center">
+<div class="row justify-content-center align-items-center text-center min-vh-100">
     <div class="col-lg-5">
         <i class="bi bi-keyboard-fill mb-3" style="font-size: 60px;"></i>
         <h1 class="mb-4 fw-normal">Registration Form</h1>
