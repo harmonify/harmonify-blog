@@ -7,8 +7,9 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
-use App\Utilities\DashboardPostUtilities as Utilities;
+use App\Policies\PostPolicy;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
+use App\Utilities\DashboardPostUtilities as Utilities;
 
 class DashboardPostController extends Controller
 {
@@ -75,6 +76,8 @@ class DashboardPostController extends Controller
      */
     public function show(Post $post)
     {
+        $this->authorize('view', $post);
+
         return view('/dashboard/posts/show', [
             'title' => $post->title,
             'post' => $post
@@ -89,6 +92,8 @@ class DashboardPostController extends Controller
      */
     public function edit(Post $post)
     {
+        $this->authorize('view', $post);
+
         return view('dashboard/posts/edit', [
             'title' => $post->title,
             'post' => $post,
@@ -105,6 +110,8 @@ class DashboardPostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
+        $this->authorize('view', $post);
+
         $update = $request->validated();
 
         $update = collect($update)->merge([
@@ -129,6 +136,8 @@ class DashboardPostController extends Controller
      */
     public function destroy(Post $post)
     {
+        $this->authorize('view', $post);
+        
         Utilities::deleteThumbnail($post->thumbnail);
 
         Post::destroy($post->id);

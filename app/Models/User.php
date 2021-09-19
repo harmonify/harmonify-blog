@@ -44,9 +44,9 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
-    public function roles()
+    public function role()
     {
-        return $this->belongsToMany(Role::class)->withTimestamps();
+        return $this->belongsTo(Role::class);
     }
 
     public function getPostsTitleAttribute()

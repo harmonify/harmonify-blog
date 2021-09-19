@@ -8,35 +8,25 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('dashboard/posts/*') ? 'active' : '' }}" href="/dashboard/posts">
+                <a class="nav-link {{ Request::is('dashboard/posts*') ? 'active' : '' }}" href="/dashboard/posts">
                     <span data-feather="file-text"></span>
                     My Posts
                 </a>
             </li>
-            <li class="nav-item opacity-50">
-                <a class="nav-link disabled" href="#">
-                    <span data-feather="shopping-cart"></span>
-                    Products
-                </a>
-            </li>
+            @can('superuser')
             <li class="nav-item opacity-50">
                 <a class="nav-link disabled" href="#">
                     <span data-feather="users"></span>
-                    Customers
+                    Users
                 </a>
             </li>
             <li class="nav-item opacity-50">
                 <a class="nav-link disabled" href="#">
-                    <span data-feather="bar-chart-2"></span>
-                    Reports
+                    <span data-feather="settings"></span>
+                    Settings
                 </a>
             </li>
-            <li class="nav-item opacity-50">
-                <a class="nav-link disabled" href="#">
-                    <span data-feather="layers"></span>
-                    Integrations
-                </a>
-            </li>
+            @endcan
         </ul>
     </div>
 </nav>

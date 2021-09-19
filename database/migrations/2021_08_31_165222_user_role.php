@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class RoleUser extends Migration
+class UserRole extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class RoleUser extends Migration
      */
     public function up()
     {
-        Schema::create('role_user', function (Blueprint $table) {
-            $table->id();
-            $table->string('role_id');
-            $table->string('user_id');
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->foreignId('role_id')->after('id')->default(1)->constrained();
         });
     }
 

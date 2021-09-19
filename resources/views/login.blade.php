@@ -20,6 +20,12 @@
                 <input type="password" class="form-control rounded-bottom" id="passwordInput" name="password" placeholder="Password" required>
                 <label for="passwordInput" class="text-muted">Password</label>
             </div>
+            <div class="form-check mb-3 d-flex justify-content-start">
+                <input class="form-check-input" type="checkbox" id="rememberMeCheckbox" name="remember_me">
+                <label class="form-check-label ms-2" for="rememberMeCheckbox">
+                  Remember Me
+                </label>
+              </div>
             <button class="w-100 btn btn-lg btn-primary bg-gradient" type="submit" name="submit">Login</button>
         </form>
         <hr class="dropdown-divider my-4">
