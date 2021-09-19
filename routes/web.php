@@ -66,10 +66,12 @@ Route::middleware(['guest'])->group(function () {
 
 //? Routes for AUTHENTICATED users
 Route::middleware(['auth'])->group(function () {
+    Route::post('/posts/{post:slug}/comment', [CommentController::class, 'store']);
+
     Route::post('/logout', [LoginController::class, 'logout']);
 
-    //? Prefix the route name with /dashboard
-    Route::prefix('/dashboard')->group(function () {
+    //? Routes for ADMINISTRATOR
+    Route::group(['prefix' => '/dashboard', 'middleware' => 'can:access_dashboard'], function () {
         Route::get('/', function () {
             return view('dashboard/index', [
                 'title' => 'Dashboard',
@@ -80,6 +82,4 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/posts/checkSlug', [DashboardPostController::class, 'checkSlug']);
         Route::resource('/posts', DashboardPostController::class);
     });
-
-    Route::post('/posts/{post:slug}/comment', [CommentController::class, 'store']);
 });

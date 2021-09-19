@@ -39,43 +39,44 @@
                 </ul>
                 <ul class="navbar-nav ms-auto">
                     @guest
-                    <li class="nav-item">
-                        <a href="/login" class="nav-link {{ ($active === 'login') ? 'active' : '' }}">
-                            <i class="bi bi-box-arrow-in-right"></i>
-                            <span>Login</span>
-                        </a>
-                    </li>
+                        <li class="nav-item">
+                            <a href="/login" class="nav-link {{ ($active === 'login') ? 'active' : '' }}">
+                                <i class="bi bi-box-arrow-in-right"></i>
+                                <span>Login</span>
+                            </a>
+                        </li>
+                    @else
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle {{ ($active === 'dropdown') ? 'active' : '' }}" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Welcome back, {{ auth()->user()->name }}
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                                @can('access_dashboard')
+                                <li>
+                                    <a class="dropdown-item" href="/dashboard">
+                                        <i class="bi-bi-layout-text-sidebar-reverse"></i>
+                                        <span>My Dashboard</span>
+                                    </a>
+                                </li>
+                                @endcan
+                                {{-- <li>
+                                    <a class="dropdown-item" href="/profile">
+                                        <span>Profile</span>
+                                    </a>
+                                </li> --}}
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <form action="/logout" method="post">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item">
+                                            <i class="bi bi-box-arrow-right"></i>
+                                            <span>Logout</span>
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
                     @endguest
-                    @auth
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle {{ ($active === 'dropdown') ? 'active' : '' }}" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Welcome back, {{ auth()->user()->name }}
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                            <li>
-                                <a class="dropdown-item" href="/dashboard">
-                                    <i class="bi-bi-layout-text-sidebar-reverse"></i>
-                                    <span>My Dashboard</span>
-                                </a>
-                            </li>
-                            {{-- <li>
-                                <a class="dropdown-item" href="/profile">
-                                    <span>Profile</span>
-                                </a>
-                            </li> --}}
-                            <li><hr class="dropdown-divider"></li>
-                            <li>
-                                <form action="/logout" method="post">
-                                    @csrf
-                                    <button type="submit" class="dropdown-item">
-                                        <i class="bi bi-box-arrow-right"></i>
-                                        <span>Logout</span>
-                                    </button>
-                                </form>
-                            </li>
-                        </ul>
-                    </li>
-                    @endauth
                 </ul>
             </div>
         </div>

@@ -114,4 +114,20 @@ return [
 
     'password_timeout' => 10800,
 
+    /*
+    |--------------------------------------------------------------------------
+    | Access To Dashboard Middleware
+    |--------------------------------------------------------------------------
+    |
+    | Here you may specify which guard_name can access the dashboard.
+    | By default, there are 2 guard_name that can access the
+    | dashboard, admin and superuser.
+    |
+    */
+
+    'access_dashboard' => [
+        'admin',
+        'superuser',
+    ]
+
 ];
