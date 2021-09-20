@@ -37,7 +37,7 @@
 <body>
     @include('components/dashboard/navbar')
 
-    <div class="container-fluid">
+    <div class="container-fluid min-vh-100">
         <div class="row">
             @include('components/dashboard/sidebar')
 

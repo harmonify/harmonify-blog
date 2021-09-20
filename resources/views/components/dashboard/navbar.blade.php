@@ -1,5 +1,5 @@
 <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-    <div class="navbar-brand col-md-3 col-lg-2 me-0 px-3 lead">
+    <div class="navbar-brand col-md-3 col-lg-2 me-0 px-3 lead" style="background-color: #0000">
         <a class="text-decoration-none" href="https://www.laravel.com" target="_blank" rel="noopener noreferrer">
             <img src="/img/laravel.svg" width="24" alt="">
         </a>

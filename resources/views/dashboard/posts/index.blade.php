@@ -10,9 +10,9 @@
 </x-dashboard.header>
 
 @if (session()->has('alert'))
-<x-alert class="col-lg-10" />
+<x-alert class="col-xl-10" />
 @endif
-<div class="table-responsive col-lg-10">
+<div class="table-responsive col-xl-10">
     <a href="/dashboard/posts/create" class="btn btn-primary mb-3 text-white text-decoration-none">
         <span data-feather="plus"></span>
         <span class="align-text-top">Create New Post</span>
