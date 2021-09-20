@@ -17,4 +17,23 @@ class Category extends Model
     {
         return $this->hasMany(Post::class);
     }
+    
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+    
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
+    }
 }
