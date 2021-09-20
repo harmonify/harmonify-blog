@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Dashboard;
 
+use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
-use App\Policies\PostPolicy;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
-use App\Utilities\DashboardPostUtilities as Utilities;
+use App\Utilities\PostResourceUtilities as Utilities;
 
-class DashboardPostController extends Controller
+class PostResourceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -64,7 +64,7 @@ class DashboardPostController extends Controller
 
         return redirect('/dashboard/posts')->with('alert', [
             'type' => 'success',
-            'message' => 'You successfully added a new post!'
+            'message' => 'You have successfully added a new post!'
         ]);
     }
 
@@ -124,7 +124,7 @@ class DashboardPostController extends Controller
 
         return redirect('/dashboard/posts')->with('alert', [
             'type' => 'success',
-            'message' => 'You updated a post!'
+            'message' => 'You have successfully updated a post!'
         ]);
     }
 
@@ -137,14 +137,14 @@ class DashboardPostController extends Controller
     public function destroy(Post $post)
     {
         $this->authorize('view', $post);
-        
+
         Utilities::deleteThumbnail($post->thumbnail);
 
         Post::destroy($post->id);
 
         return redirect('/dashboard/posts')->with('alert', [
             'type' => 'warning',
-            'message' => 'You successfully deleted a post.',
+            'message' => 'You have successfully deleted a post.',
         ]);
     }
 

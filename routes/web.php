@@ -6,7 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\DashboardPostController;
+use App\Http\Controllers\Dashboard\PostResourceController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\CommentController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -79,7 +79,7 @@ Route::middleware(['auth'])->group(function () {
             ]);
         });
 
-        Route::get('/posts/checkSlug', [DashboardPostController::class, 'checkSlug']);
-        Route::resource('/posts', DashboardPostController::class);
+        Route::get('/posts/checkSlug', [PostResourceController::class, 'checkSlug']);
+        Route::resource('/posts', PostResourceController::class);
     });
 });

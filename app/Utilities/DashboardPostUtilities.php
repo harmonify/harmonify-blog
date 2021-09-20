@@ -5,7 +5,7 @@ namespace App\Utilities;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
-class DashboardPostUtilities
+class PostResourceUtilities
 {
     protected static $defaultThumbnail = 'thumbnails/default.jpg';
 
