@@ -27,7 +27,7 @@
 </div>
 
 <script>
-    listenSluggable();
+    listenSluggable('/dashboard/posts/checkSlug', 'title', 'slug');
     disableTrixFileUpload();
 </script>
 @endsection

@@ -15,7 +15,7 @@
                         <span data-feather="edit"></span>
                         Edit
                     </a>
-                    <x-dashboard.destroy :slug="$post->slug">
+                    <x-dashboard.destroy action="/dashboard/posts/{{ $post->slug }}">
                         Delete
                     </x-dashboard.destroy>
                 </div>

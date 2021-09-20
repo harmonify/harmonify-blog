@@ -41,7 +41,7 @@
                 <a href="/dashboard/posts/{{ $post->slug }}/edit" class="btn btn-sm btn-warning text-decoration-none text-light">
                     <span data-feather="edit"></span>
                 </a>
-                <x-dashboard.destroy :slug="$post->slug"/>
+                <x-dashboard.destroy action="/dashboard/posts/{{ $post->slug }}"/>
             </td>
         </tr>
         @endforeach

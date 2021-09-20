@@ -13,15 +13,21 @@
                     My Posts
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link {{ Request::is('dashboard/categories*') ? 'active' : '' }}" href="/dashboard/categories">
+                    <span data-feather="layers"></span>
+                    Categories
+                </a>
+            </li>
             @can('superuser')
-            <li class="nav-item opacity-50">
-                <a class="nav-link disabled" href="#">
+            <li class="nav-item">
+                <a class="nav-link" href="#">
                     <span data-feather="users"></span>
                     Users
                 </a>
             </li>
-            <li class="nav-item opacity-50">
-                <a class="nav-link disabled" href="#">
+            <li class="nav-item">
+                <a class="nav-link" href="#">
                     <span data-feather="settings"></span>
                     Settings
                 </a>

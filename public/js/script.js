@@ -10,12 +10,12 @@ function scrollToTop() {
     }
 };
 
-function listenSluggable() {
-    const title = document.querySelector('#title');
-    const slug = document.querySelector('#slug');
+function listenSluggable(checkSlugUri, from, to) {
+    const title = document.querySelector(`#${from}`);
+    const slug = document.querySelector(`#${to}`);
 
     title.addEventListener('change', function () {
-        fetch(`/dashboard/posts/checkSlug?title=${title.value}`)
+        fetch(`${checkSlugUri}?title=${title.value}`)
             .then(response => response.json())
             .then(data => slug.value = data.slug);
     });
