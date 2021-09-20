@@ -16,4 +16,8 @@
             </div>
         @endforeach
     </div>
+
+    <div class="d-flex justify-content-center">
+        {{ $categories->links() }}
+    </div>
 @endsection

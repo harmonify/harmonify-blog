@@ -9,11 +9,11 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        return view('categories/index', [
+        return view('blog.categories', [
             'title' => 'Categories',
             'active' => 'blog',
             'heading' => 'All Categories',
-            'categories' => Category::all(),
+            'categories' => Category::paginate(9),
         ]);
     }
 }

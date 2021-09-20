@@ -2,11 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\NewsletterController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Controllers\Dashboard\PostResourceController;
@@ -28,7 +28,7 @@ Route::view('/test', 'test');
 Route::permanentRedirect('/home', '/');
 
 Route::get('/', function () {
-    return view('home', [
+    return view('home.index', [
       'title' => 'Home',
       'active' => 'home',
     ]);
@@ -37,7 +37,7 @@ Route::get('/', function () {
 Route::post('/newsletter', NewsletterController::class);
 
 Route::get('/about', function () {
-    return view('about', [
+    return view('home.about', [
       'title' => 'About',
       'active' => 'about',
       'name' => 'Wendy Surya Wijaya',
@@ -52,7 +52,7 @@ Route::get('/posts/{post:slug}', [PostController::class, 'show'])->where(['post:
 
 Route::get('/categories', [CategoryController::class, 'index']);
 
-Route::get('/authors', [UserController::class, 'index']);
+Route::get('/authors', [AuthorController::class, 'index']);
 
 
 //? Routes for GUEST users

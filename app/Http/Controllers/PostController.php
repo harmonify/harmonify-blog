@@ -13,7 +13,7 @@ class PostController extends Controller
     {
         $heading = PostUtilities::generateHeading(request());
         // dd($heading);
-        return view('posts/index', [
+        return view('blog.index', [
           'title' => 'Posts',
           'active' => 'blog',
           'heading' => $heading,
@@ -28,7 +28,7 @@ class PostController extends Controller
     public function show(Post $post)
     {
         // ddd($post, $post->load('comments'));
-        return view('posts/show', [
+        return view('blog.show', [
           'title' => 'Single Post',
           'active' => 'blog',
           'post' => $post,

@@ -14,4 +14,8 @@
             </div>
         </div>
     @endforeach
+
+    <div class="d-flex justify-content-center">
+        {{ $authors->links() }}
+    </div>
 @endsection
