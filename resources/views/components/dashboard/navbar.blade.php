@@ -4,7 +4,7 @@
             <img src="/img/laravel.svg" width="24" alt="">
         </a>
         <a class="text-decoration-none text-white lead h1 fst-italic" href="/">
-            Try Laravel
+            Harmonify
         </a>
     </div>
     <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">

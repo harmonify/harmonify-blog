@@ -4,7 +4,7 @@
             <img src="img/laravel.svg" width="24" alt="">
         </a>
         <a class="navbar-brand lead fst-italic" href="/">
-            Try Laravel
+            Harmonify
         </a>
         <div class="vr d-none d-lg-block mx-3 opacity-25"></div>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
