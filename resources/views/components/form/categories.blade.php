@@ -14,7 +14,7 @@
         {{ $attributes }}
     >
         <option selected value="1" class="text-muted">Choose a {{ $label }}</option>
-        @foreach ($categories->skip(1) as $category)
+        @foreach ($categories as $category)
             <option value="{{ $category->id }}"
                 {{ old($name, $old) == $category->id ? 'selected' : '' }}
             >

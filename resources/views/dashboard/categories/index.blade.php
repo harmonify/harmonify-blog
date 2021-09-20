@@ -4,7 +4,7 @@
 
 <x-dashboard.header>
     <x-slot name="title">
-        My Categories
+        All Categories
     </x-slot>
     <x-dashboard.toolbar />
 </x-dashboard.header>

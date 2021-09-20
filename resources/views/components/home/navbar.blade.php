@@ -55,7 +55,7 @@
                                 <li>
                                     <a class="dropdown-item" href="/dashboard">
                                         <i class="bi-bi-layout-text-sidebar-reverse"></i>
-                                        <span>My Dashboard</span>
+                                        <span>Dashboard</span>
                                     </a>
                                 </li>
                                 @endcan

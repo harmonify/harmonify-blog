@@ -29,7 +29,7 @@
             </li>
             @can('superuser')
             <li class="nav-item">
-                <a class="nav-link text-opacity-75 {{ Request::is('asdfdsf') ? 'active' : 'text-white' }}" href="#">
+                <a class="nav-link text-opacity-75 {{ Request::is('dashboard/users*') ? 'active' : 'text-white' }}" href="/dashboard/users">
                     <span data-feather="users"></span>
                     Users
                 </a>
