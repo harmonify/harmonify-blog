@@ -59,9 +59,7 @@ class DashboardPostUtilities
             return $oldThumbnail;
         }
 
-        if ($oldThumbnail !== self::$defaultThumbnail) {
-            Storage::delete($oldThumbnail);
-        }
+        static::deleteThumbnail($oldThumbnail);
 
         return $thumbnail->store('thumbnails');
     }
@@ -74,8 +72,8 @@ class DashboardPostUtilities
      */
     public static function deleteThumbnail($thumbnail)
     {
-        collect($thumbnail)->unless($thumbnail === self::$defaultThumbnail, fn () =>
-            Storage::delete($thumbnail)
-        );
+        if ($thumbnail !== self::$defaultThumbnail) {
+            Storage::delete($thumbnail);
+        }
     }
 }
