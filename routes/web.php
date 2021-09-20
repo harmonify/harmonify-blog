@@ -81,6 +81,7 @@ Route::middleware(['auth'])->group(function () {
         });
 
         Route::get('/posts/checkSlug', [PostResourceController::class, 'checkSlug']);
+        Route::get('/posts/all', [PostResourceController::class, 'all'])->name('postResource.all');
         Route::resource('/posts', PostResourceController::class);
 
         Route::get('/categories/checkSlug', [CategoryResourceController::class, 'checkSlug']);

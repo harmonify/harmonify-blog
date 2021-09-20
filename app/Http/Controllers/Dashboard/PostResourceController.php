@@ -154,4 +154,13 @@ class PostResourceController extends Controller
         return response()->json(['slug' => $slug]);
     }
 
+    public function all()
+    {
+        return view('dashboard.posts.all', [
+            'title' => 'All Posts',
+            'posts' => Post::with('category')
+            ->latest('updated_at')
+            ->paginate(10),        
+        ]);
+    }
 }

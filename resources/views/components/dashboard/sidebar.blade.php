@@ -8,14 +8,14 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-opacity-75 {{ Request::is('dashboard/posts*') ? 'active' : 'text-white' }}" href="/dashboard/posts">
+                <a class="nav-link text-opacity-75 {{ Request::is('dashboard/posts*') && !Request::routeIs('postResource.all') ? 'active' : 'text-white' }}" href="/dashboard/posts">
                     <span data-feather="file-text"></span>
                     My Posts
                 </a>
             </li>
             @can('superuser')
             <li class="nav-item">
-                <a class="nav-link text-opacity-75 {{ Request::is('asdfdsf') ? 'active' : 'text-white' }}" href="#">
+                <a class="nav-link text-opacity-75 {{ Request::routeIs('postResource.all') ? 'active' : 'text-white' }}" href="/dashboard/posts/all">
                     <span data-feather="archive"></span>
                     All Posts
                 </a>
