@@ -3,13 +3,14 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\AuthorController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\Auth\RegisterController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Controllers\Dashboard\PostResourceController;
+use App\Http\Controllers\Dashboard\UserResourceController;
 use App\Http\Controllers\Dashboard\CategoryResourceController;
 
 /*
@@ -86,5 +87,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/categories/checkSlug', [CategoryResourceController::class, 'checkSlug']);
         Route::resource('/categories', CategoryResourceController::class)->except('show');
+
+        Route::resource('/users', UserResourceController::class)->except('create', 'store')->middleware('can:superuser');
     });
 });
