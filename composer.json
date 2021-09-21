@@ -12,7 +12,8 @@
         "itsgoingd/clockwork": "^5.1",
         "laravel/framework": "^8.54",
         "laravel/tinker": "^2.5",
-        "mailchimp/marketing": "^3.0"
+        "mailchimp/marketing": "^3.0",
+        "marvinlabs/laravel-discord-logger": "^1.1"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

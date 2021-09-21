@@ -43,8 +43,22 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single', 'myErrors'],
+            'channels' => ['single', 'myErrors', 'discord-warning', 'discord-debug'],
             'ignore_exceptions' => false,
+        ],
+
+        'discord-warning' => [
+            'driver' => 'custom',
+            'via'    => MarvinLabs\DiscordLogger\Logger::class,
+            'level'  => 'warning',
+            'url'    => env('LOG_DISCORD_WEBHOOK_URL_WARNING'),
+        ],
+        
+        'discord-debug' => [
+            'driver' => 'custom',
+            'via'    => MarvinLabs\DiscordLogger\Logger::class,
+            'level'  => 'debug',
+            'url'    => env('LOG_DISCORD_WEBHOOK_URL_DEBUG'),
         ],
 
         'myErrors' => [

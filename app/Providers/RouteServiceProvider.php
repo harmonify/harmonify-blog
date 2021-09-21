@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Support\Facades\RateLimiter;
@@ -65,9 +64,13 @@ class RouteServiceProvider extends ServiceProvider
 
         RateLimiter::for('consecutive-failed-login', function(Request $request) {
             return Limit::perMinute(5)->response(function () use ($request) {
-                if (User::where('username', $request['username'])->exists()) {
-                    Log::channel('userFailedToLogin')
-                        ->notice("An existing user failed to login thrice.", ['username' => $request['username']]);
+                $user = User::firstWhere('username', $request->username);
+                if (optional($user)->exists()) {
+                    logger()->info("An existing user failed to login many times.", [
+                        'username' => $user->username,
+                        'email' => $user->email,
+                        'role' => $user->role->name,
+                    ]);
                 }
                 return redirect('/login')
                     ->with('alert', [
