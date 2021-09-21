@@ -74,12 +74,7 @@ Route::middleware(['auth'])->group(function () {
 
     //? Routes for ADMINISTRATOR
     Route::group(['prefix' => '/dashboard', 'middleware' => 'can:access_dashboard'], function () {
-        Route::get('/', function () {
-            return view('dashboard/index', [
-                'title' => 'Dashboard',
-                'active' => 'dashboard'
-            ]);
-        });
+        Route::get('/', [DashboardController::class, 'index']);
 
         Route::get('/posts/checkSlug', [PostResourceController::class, 'checkSlug']);
         Route::get('/posts/all', [PostResourceController::class, 'all'])->name('postResource.all');
@@ -89,5 +84,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('/categories', CategoryResourceController::class)->except('show');
 
         Route::resource('/users', UserResourceController::class)->except('create', 'store')->middleware('can:superuser');
+
+        Route::get('/settings', [DashboardController::class, 'settings']);
     });
 });
