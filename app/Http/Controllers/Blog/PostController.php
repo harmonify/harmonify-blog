@@ -1,17 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Blog;
 
+use App\Http\Controllers\Controller;
 use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
-use App\Utilities\PostUtilities;
+use App\Utilities\PostUtilities as Utilities;
 
 class PostController extends Controller
 {
     public function index()
     {
-        $heading = PostUtilities::generateHeading(request());
+        $heading = Utilities::generateHeading(request());
         // dd($heading);
         return view('blog.index', [
           'title' => 'Posts',

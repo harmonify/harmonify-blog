@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\AuthorController;
-use App\Http\Controllers\CommentController;
-use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Blog\PostController;
+use App\Http\Controllers\Blog\AuthorController;
+use App\Http\Controllers\Blog\CommentController;
+use App\Http\Controllers\Blog\CategoryController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -12,6 +12,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Controllers\Dashboard\PostResourceController;
 use App\Http\Controllers\Dashboard\UserResourceController;
 use App\Http\Controllers\Dashboard\CategoryResourceController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,25 +29,11 @@ Route::view('/test', 'test');
 
 Route::permanentRedirect('/home', '/');
 
-Route::get('/', function () {
-    return view('home.index', [
-      'title' => 'Home',
-      'active' => 'home',
-    ]);
-});
+Route::get('/', [HomeController::class, 'index']);
 
 Route::post('/newsletter', NewsletterController::class);
 
-Route::get('/about', function () {
-    return view('home.about', [
-      'title' => 'About',
-      'active' => 'about',
-      'name' => 'Wendy Surya Wijaya',
-      'age' => 21,
-      'gender' => 'Male',
-      'image' => 'me.jpg'
-    ]);
-})->middleware('throttle:my-limiter');
+Route::get('/about', [HomeController::class, 'about'])->middleware('throttle:my-limiter');
 
 Route::get('/posts', [PostController::class, 'index']);
 Route::get('/posts/{post:slug}', [PostController::class, 'show'])->where(['post:slug' => '[A-Za-z0-9\-]+']);
