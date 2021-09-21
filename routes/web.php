@@ -1,18 +1,18 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Blog\PostController;
-use App\Http\Controllers\Blog\AuthorController;
-use App\Http\Controllers\Blog\CommentController;
-use App\Http\Controllers\Blog\CategoryController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\Blog\AuthorController;
+use App\Http\Controllers\Blog\CommentController;
 use App\Http\Controllers\Auth\RegisterController;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use App\Http\Controllers\Blog\CategoryController;
+use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\PostResourceController;
 use App\Http\Controllers\Dashboard\UserResourceController;
 use App\Http\Controllers\Dashboard\CategoryResourceController;
-use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +33,7 @@ Route::get('/', [HomeController::class, 'index']);
 
 Route::post('/newsletter', NewsletterController::class);
 
-Route::get('/about', [HomeController::class, 'about'])->middleware('throttle:my-limiter');
+Route::get('/about', [HomeController::class, 'about']);
 
 Route::get('/posts', [PostController::class, 'index']);
 Route::get('/posts/{post:slug}', [PostController::class, 'show'])->where(['post:slug' => '[A-Za-z0-9\-]+']);
@@ -46,7 +46,7 @@ Route::get('/authors', [AuthorController::class, 'index']);
 //? Routes for GUEST users
 Route::middleware(['guest'])->group(function () {
     Route::get('/login', [LoginController::class, 'index'])->name('login');
-    Route::post('/login', [LoginController::class, 'authenticate'])->middleware('throttle:three-failed-login');
+    Route::post('/login', [LoginController::class, 'authenticate'])->middleware('throttle:consecutive-failed-login');
 
     Route::get('/register', [RegisterController::class, 'index']);
     Route::post('/register', [RegisterController::class, 'store']);

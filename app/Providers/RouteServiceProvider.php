@@ -63,12 +63,8 @@ class RouteServiceProvider extends ServiceProvider
             return Limit::perMinute(60)->by(optional($request->user())->id ?: $request->ip());
         });
 
-        RateLimiter::for('my-limiter', function(Request $request) {
-            return Limit::perMinute(3);
-        });
-
-        RateLimiter::for('three-failed-login', function(Request $request) {
-            return Limit::perMinute(3)->response(function () use ($request) {
+        RateLimiter::for('consecutive-failed-login', function(Request $request) {
+            return Limit::perMinute(5)->response(function () use ($request) {
                 if (User::where('username', $request['username'])->exists()) {
                     Log::channel('userFailedToLogin')
                         ->notice("An existing user failed to login thrice.", ['username' => $request['username']]);
