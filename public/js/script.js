@@ -26,3 +26,9 @@ function disableTrixFileUpload() {
         e.preventDefault();
     })
 }
+
+function copyText(input) {
+    const copyText = document.querySelector(input);
+    copyText.select();
+    document.execCommand('copy');
+}

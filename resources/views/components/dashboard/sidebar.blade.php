@@ -27,6 +27,12 @@
                     Categories
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link text-opacity-75 {{ Request::is('dashboard/thumbnails*') ? 'active' : 'text-white' }}" href="/dashboard/thumbnails">
+                    <span data-feather="image"></span>
+                    Thumbnails
+                </a>
+            </li>
             @can('superuser')
             <li class="nav-item">
                 <a class="nav-link text-opacity-75 {{ Request::is('dashboard/users*') ? 'active' : 'text-white' }}" href="/dashboard/users">
