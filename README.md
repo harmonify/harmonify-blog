@@ -1,63 +1,86 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+<div align="center">
 
+# Harmonify Blog
+</div>
 <p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+<a href="https://harmonify-blog.herokuapp.com/" target="_blank"><img src="https://raw.githubusercontent.com/harmonify/harmonify-blog/main/.github/img/preview.png" width="600"></a>
 </p>
 
-## About Laravel
+_Disclaimer: All users data previewed on the image are fake data generated with FakerPHP._
+## Introduction
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Harmonify Blog is a simple blog project I built when learning Laravel 8. I hosted this website at Heroku. You may visit the website at https://harmonify-blog.herokuapp.com.
+To log in, you may use some accounts with different roles [below here](#roles).
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Two Branches ?
 
-## Learning Laravel
+You might notice there are 2 branches in this repository. One is `main`, and the other one is `deploy`. In some sense, both of them are functionally equal. The only difference is how they are serving the images to the end users.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+The `main` branch utilize local filesystem to manage files, like post thumbnails when they are created or updated. This branch is ready to switch from local filesystem to another filesystem, _may I change it at a later date_, by editing only the config files.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Meanwhile, the `deploy` branch don't utilize any filesystem at the moment to serve post thumbnails to the end users. The reason is because I hosted this website with Heroku free services. Heroku dynos are stateless which means their filesystem is ephemeral. I don't plan to use something like Amazon S3, hence I dump all those images on my own Discord channel and store only the image URLs. _lol_
 
-## Laravel Sponsors
+## Roles
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+There are 3 roles available by default.  
+User, administrator, and superuser role.
+### User
+> username: user  
+> password: user  
 
-### Premium Partners
+List of all user permissions:
+* Can create, update, or delete their comments. _(not finished)_
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
+### Administrator
+> username: admin  
+> password: admin  
 
-## Contributing
+List of all admin permissions:
+* All of User role permissions.
+* Can access dashboard.
+* Can view, create, update, or delete their posts from dashboard.
+* Can view, create, update, or delete categories from dashboard.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Superuser
+> username: superuser  
+> password: superuser  
 
-## Code of Conduct
+List of all superuser permissions:
+* All of Admin role permissions.
+* Can view, create, update, or delete all posts from dashboard.
+* Can view, update, or delete another users from dashboard.
+* Can view, create, update, or delete roles from dashboard. _(not finished)_
+* Can view or update settings from dashboard. _(not finished)_
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Components
 
-## Security Vulnerabilities
+### Tech & Frameworks
+These are technologies I used to build up this website.
+* [PHP 8.0.6](https://www.php.net/)
+* [Laravel 8.54](https://laravel.com/)
+* [MariaDB 10.4.19](https://mariadb.org/)
+* [Bootstrap CSS 5.1.0](https://getbootstrap.com/)
+* [Bootstrap Icons 1.5.0](https://icons.getbootstrap.com/)
+* [Feather Icons 4.28.0](https://feathericons.com/)
+* [Masonry JS 4.2.2](https://masonry.desandro.com/)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Other Packages
 
-## License
+These are the packages I used which are not included with the Laravel Framework itself, for app development or functionality.
+* [cretueusebiu/valet-windows](https://github.com/cretueusebiu/valet-windows)
+* [itsgoingd/clockwork](https://github.com/itsgoingd/clockwork)
+* [cviebrock/eloquent-sluggable](https://github.com/cviebrock/eloquent-sluggable)
+* [mailchimp/marketing](https://github.com/mailchimp/mailchimp-marketing-php)
+* [marvinlabs/laravel-discord-logger](https://github.com/marvinlabs/laravel-discord-logger)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## TODO
+
+List of things I could improve on this website but didn't.
+- [ ] Redesign Homepages,
+- [ ] CommentResourceController,
+- [ ] RoleResourceController,
+- [ ] Roles menu on the dashboard,
+- [ ] SettingsController,
+- [ ] Settings menu on the dashboard,
+- [ ] etc.
