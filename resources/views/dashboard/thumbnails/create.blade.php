@@ -17,6 +17,7 @@
         @csrf
         <x-form.input name="name" required />
         <x-form.input name="slug" required />
+        <x-form.input name="url" required />
 
         <button type="submit" class="btn btn-primary">Add Thumbnail</button>
     </form>

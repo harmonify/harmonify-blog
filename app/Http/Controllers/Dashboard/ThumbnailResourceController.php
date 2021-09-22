@@ -17,7 +17,7 @@ class ThumbnailResourceController extends Controller
     public function index()
     {
         return view('dashboard.thumbnails.index', [
-            'title' => 'All Categories',
+            'title' => 'All Thumbnails',
             'thumbnails' => Thumbnail::latest('updated_at')->paginate(10),
         ]);
     }
@@ -64,7 +64,7 @@ class ThumbnailResourceController extends Controller
     public function show(Thumbnail $thumbnail)
     {
          return view('dashboard.thumbnails.show', [
-            'title' => $thumbnail->title,
+            'title' => "Thumbnail",
             'thumbnail' => $thumbnail
         ]);
     }
@@ -78,7 +78,7 @@ class ThumbnailResourceController extends Controller
     public function edit(Thumbnail $thumbnail)
     {
         return view('/dashboard/thumbnails/edit', [
-            'title' => $thumbnail->title,
+            'title' => "Edit Thumbnail",
             'thumbnail' => $thumbnail,
         ]);
     }

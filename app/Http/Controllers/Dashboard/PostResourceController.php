@@ -8,6 +8,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use App\Models\Thumbnail;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 use App\Utilities\PostResourceUtilities as Utilities;
 
@@ -38,7 +39,8 @@ class PostResourceController extends Controller
     {
         return view('dashboard/posts/create', [
             'title' => 'Create New Post',
-            'categories' => Category::all()
+            'categories' => Category::all(),
+            'thumbnails' => Thumbnail::all()
         ]);
     }
 
@@ -98,6 +100,7 @@ class PostResourceController extends Controller
             'title' => $post->title,
             'post' => $post,
             'categories' => Category::all(),
+            'thumbnails' => Thumbnail::all()
         ]);
     }
 

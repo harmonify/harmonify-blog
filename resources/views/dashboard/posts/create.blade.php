@@ -18,7 +18,7 @@
         <x-form.input name="title" required />
         <x-form.input name="slug" required />
         <x-form.categories name="category_id" label="category" :categories="$categories" required />
-        <x-form.input name="thumbnail" label="Thumbnail URL" required />
+        <x-form.search name="thumbnail" label="Thumbnail URL" :dataset="$thumbnails" required />
         <x-form.text-editor name="body" required />
 
         <button type="submit" class="btn btn-primary">Create Post</button>

@@ -18,6 +18,7 @@
         @method('PUT')
         <x-form.input name="name" :old="$thumbnail->name" required />
         <x-form.input name="slug" :old="$thumbnail->slug" required />
+        <x-form.input name="url" :old="$thumbnail->url" required />
 
         <button type="submit" class="btn btn-primary">Edit Thumbnail</button>
     </form>

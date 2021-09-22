@@ -20,7 +20,7 @@
                     </x-dashboard.destroy>
                 </div>
                 <h5 class="card-title">{{ $thumbnail->name }}</h5>
-                <p class="card-text">URL: {{ $thumbnail->created_at->diffForHumans() }}</p>
+                <p class="card-text">URL: {{ $thumbnail->url }}</p>
                 <p class="card-text">Added {{ $thumbnail->created_at->diffForHumans() }}</p>
             </div>
         </div>
