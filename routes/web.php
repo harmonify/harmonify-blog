@@ -13,6 +13,7 @@ use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\PostResourceController;
 use App\Http\Controllers\Dashboard\UserResourceController;
 use App\Http\Controllers\Dashboard\CategoryResourceController;
+use App\Http\Controllers\Dashboard\ThumbnailResourceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,8 +68,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/posts/all', [PostResourceController::class, 'all'])->name('postResource.all');
         Route::resource('/posts', PostResourceController::class);
 
-        Route::get('/categories/checkSlug', [CategoryResourceController::class, 'checkSlug']);
         Route::resource('/categories', CategoryResourceController::class)->except('show');
+        
+        Route::resource('/thumbnails', ThumbnailResourceController::class);
 
         Route::resource('/users', UserResourceController::class)->except('create', 'store')->middleware('can:superuser');
 
