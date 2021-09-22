@@ -57,7 +57,7 @@ class PostResourceController extends Controller
         $post = collect($post)->merge([
             'excerpt' => Utilities::generateExcerpt($post['body']),
             'user_id' => Utilities::getAuthorId(),
-            'thumbnail' => Utilities::storeThumbnail($request->thumbnail),
+            // 'thumbnail' => Utilities::storeThumbnail($request->thumbnail),
         ])->toArray();
 
         Post::create($post);
@@ -117,7 +117,7 @@ class PostResourceController extends Controller
         $update = collect($update)->merge([
             'excerpt' => Utilities::generateExcerpt($update['body']),
             'user_id' => Utilities::getAuthorId(),
-            'thumbnail' => Utilities::updateThumbnail($request->thumbnail),
+            // 'thumbnail' => Utilities::updateThumbnail($request->thumbnail),
         ])->toArray();
 
         Post::find($post->id)->update($update);
@@ -138,7 +138,7 @@ class PostResourceController extends Controller
     {
         $this->authorize('view', $post);
 
-        Utilities::deleteThumbnail($post->thumbnail);
+        // Utilities::deleteThumbnail($post->thumbnail);
 
         Post::destroy($post->id);
 

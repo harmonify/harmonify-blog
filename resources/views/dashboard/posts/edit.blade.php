@@ -19,7 +19,7 @@
         <x-form.input name="title" :old="$post->title" required />
         <x-form.input name="slug" :old="$post->slug" required />
         <x-form.categories name="category_id" label="category" :categories="$categories" :old="$post->category_id" required />
-        <x-form.input name="thumbnail" type="file" />
+        <x-form.input name="thumbnail" label="Thumbnail URL" :old="$post->thumbnail" required />
         <x-form.text-editor name="body" :old="$post->body" required />
 
         <button type="submit" class="btn btn-primary">Update Post</button>

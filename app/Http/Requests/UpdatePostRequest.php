@@ -26,9 +26,9 @@ class UpdatePostRequest extends FormRequest
     {
         return [
             'title' => 'required|string|min:3|max:255',
-            'slug' => ['required', 'string', 'min:3', Rule::unique('posts')->ignore($this->post->id, 'id')],
-            'thumbnail' => 'image|file|max:2048',
-            'body' => 'required|string|min:20',
+            'slug' => ['required', 'string', 'min:3', 'max:255', Rule::unique('posts')->ignore($this->post->id, 'id')],
+            'thumbnail' => 'required|string|max:1000',
+            'body' => 'required|string|min:20|max:10000',
             'category_id' => 'required|numeric',
         ];
     }
